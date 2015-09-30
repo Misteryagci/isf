@@ -390,6 +390,8 @@ void clavier (unsigned char key, int x, int y)
 		case 'q':  printf("Au revoir!\n");
 				   exit(1);
 				   break;
+    case GLUT_DOWN: printf ("Blablabla");
+                      break;
 		default : printf("Touche appuyé est %c\n",key);
 	}
 }
