@@ -69,7 +69,7 @@ function [i,s,mi,mj,sii,sij,sji,sjj,valeur_propres_mat_diag,mat_passage,ratio,th
   ratio = sqrt(max(max(valeur_propres_mat_diag)) - min(min(valeur_propres_mat_diag)));
   y=mat_passage(1,1);
   x=mat_passage(2,1);
-  theta = atan2(y,x);
+  theta = atan2(y,x)
  endfunction
 
 
