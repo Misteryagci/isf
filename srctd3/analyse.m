@@ -1,4 +1,4 @@
-function [ngmax,s,mi,mj,sii,sjj,sij,ratio,theta,lambda]=analyse(nf)
+    function [ngmax,s,mi,mj,sii,sjj,sij,ratio,theta,lambda]=analyse(nf)
   % nom_fichier : nom du fichier image au format pgm (en noir et blanc)
   [I,ngmax]=imload(nf);
   I=I/max(max(I));
