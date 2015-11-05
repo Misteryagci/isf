@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <assert.h>
+#include <math.h>
 #include <complex.h>
+#include <fftw3.h>
 #include "gnuplot_i.h"
-
 
 #define SAMPLING_RATE 44100.0
 #define CHANNELS_NUMBER 1
-#define N 1024
-
+#define N 16384
 #define real double
 
 typedef real frame[N];
@@ -23,6 +23,14 @@ static char *SOUND_FILE_NAME_READ = "tmp-in.raw";
 static real cache_in[N/2];
 
 static gnuplot_ctrl *h = NULL;
+
+static fftw_plan plan;
+
+fftw_complex data_in[N];
+fftw_complex data_out[N];
+
+
+
 
 FILE *
 sound_file_open_read (char *sound_file_name)
@@ -144,23 +152,69 @@ sound_file_write (frame s, FILE *fp)
   fwrite (tmp, sizeof(short), N/2*CHANNELS_NUMBER, fp);
 }
 
-void
-plot_init () {
-  h = gnuplot_init();
-  gnuplot_setstyle (h,"lines");
-  
+
+/****************************/
+void plot_init() 
+{
+	h = gnuplot_init();
+	gnuplot_setstyle (h, "lines");
 
 }
 
+void dft (double s[N], complex S[N])
+{
+	int m,n;
 
+	for(m = 0 ; m < N ; m++)
+	{
+		S[m]=0;
+		for(n = 0 ; n < N ; n++)
+		{
+			S[m]+=s[n]*cexp(-I*2*M_PI/N*n*m);
+		}
+	}
+}
 
+void cartesian_to_polar (complex S[N], double amp[N], double phs[N])
+{
+	int i;
+
+	for (i = 0 ; i < N ; i++)
+	{
+		/* Calcule du module et de la phase */
+		amp[i] = cabs(S[i]);
+		phs[i] = carg(S[i]);
+	}
+}
+
+  /* init */
+  void fft_init (){
+       plan = fftw_plan_dft_1d(N, data_in, data_out, FFTW_FORWARD, FFTW_ESTIMATE);
+           }
+
+    void fft_exit() {
+       fftw_destroy_plan (plan);
+    }
+
+    void fft_execute(){
+      
+                 fftw_execute (plan);
+     }
+ 
 int
 main (int argc, char *argv[])
 {
+	int i = 0;
+
   FILE *input, *output;
 
   /* temporal */
   frame s;
+	// déclaration des tableaux
+	frame x_axis;
+	complex S[N];
+	double amp[N];
+	double phs[N];
 
   assert (sizeof(short) == 2);
 
@@ -170,33 +224,50 @@ main (int argc, char *argv[])
       exit (EXIT_FAILURE);
     }
 
-  /* init */
-  //fft_init ();
 
   input = sound_file_open_read (argv[1]);
   output = sound_file_open_write ();
-  
-  double* x_axis = (double*)malloc(sizeof(double)*N);
-  int i=0;
-  for (i=0;i<N;i++)
-    x_axis[i] = i;
+// initialisation du graphe
+  	  plot_init();  
 
-  plot_init();
+
+         fft_init();
+
   /* process */
   while (sound_file_read (input, s))
     {
-      gnuplot_plot_xy (h, x_axis, s, N, "son");
+	
+	for (i=0 ; i < N ; i++)
+	{
+		//x_axis[i] = i/SAMPLING_RATE);
+		x_axis[i] = (i*SAMPLING_RATE)/N;	// dft initialisation de l'abscisse
+                 data_in[i]=s[i];
+	}
       /* ANALYSIS */
-      
       sound_file_write (s, output);
+
+	// transformée de Fourier discrète
+	//dft(s, S);
+	//cartesian_to_polar(S, amp, phs);
+
+        fft_execute();
+
+
+          cartesian_to_polar(data_out, amp, phs);
+	/* AFFICHAGE */
+      	gnuplot_resetplot(h);
+	gnuplot_plot_xy (h, x_axis, amp, N/2, "son");
+	//sleep(1);
     }
 
   /* exit */
 
   sound_file_close_write (output);
   sound_file_close_read (input);
+	
+  //fftw_destroy_plan(plan);
 
-  //fft_exit ();
+  fft_exit ();
 
   exit (EXIT_SUCCESS);
 
