@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project( MotionCompensation )
+project( MotionTool )
 find_package( OpenCV REQUIRED )
-add_executable( blockMatching main.cpp ../../TD1/src/videoframes.cpp ../../TD1/src/motiontools.cpp )
-target_link_libraries( blockMatching ${OpenCV_LIBS} )
+add_executable( motionTool main.cpp videoframes.cpp motiontools.cpp)
+target_link_libraries( motionTool ${OpenCV_LIBS} )

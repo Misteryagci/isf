@@ -1,6 +1,6 @@
 #include "../../TD1/src/videoframes.hpp"
 #include "../../TD1/src/motiontools.hpp"
-
+#include "types_c.h"
 #include <opencv2/legacy/legacy.hpp>
 
 /*
@@ -13,38 +13,44 @@
  */
 int main( int argc, char **argv )
 {
-	// Lecture des 2 image en entrée
-	/* À compléter */
+	// Lecture des 2 image en entrée	
+	// Lecture de l'image 1
+	cv::Mat image1 = cv::imread(argv[1], 0);
+	// Lecture de l'image 2
+	cv::Mat image1 = cv::imread(argv[2], 0);
 
 	// Lecture de la taille des blocks
-	/* À compléter */
+	int block_size = argv[3];
 
 	// Conversion des 2 images en images Intel (IplImage)
-	/* À compléter */
+	cv::IplImage ipl1 = cv::_IplImage(image1);
+	cv::IplImage ipl2 = cv::_IplImage(image2);
 
 	// Définition des 2 matrices de déplacements en x et en y
-	/* À compléter */
+	/* Il faut juste créer deux matrice de déplacement */
 
 	// Définition des sous-matrices pour répondre aux contraintes de l'appel à cvCalcOpticalFlowBM
-	/* À compléter */
+	/* Il faut créer deux sous matrices  */
 
 	// Conversion des sous-matrices en images IPL
-	/* À compléter */
+	/* Il faut convertir les sous-matrices qu'on a crée à des matrices en images IPL */
 
 	// Exécution de l'algorithme de block matching
-	cvCalcOpticalFlowBM( /* À compléter */ );
+	cvCalcOpticalFlowBM(image1,image2,block_size,1,8);
 
 	// Dessin de l'image de déplacements
-	MotionTools::drawVectorFlow( /* À compléter */ );
+	//On suupose que les paramètres sont définis
+	MotionTools::drawVectorFlow(imDep,vecX,vecY,60,color);
 
 	// Calcul de l'image compensée à partir des vecteurs de déplacement
-	MotionTools::compenseFromVectorFlow( /* À compléter */ );
+	//On suppose que les paramètres sont définis.
+	MotionTools::compenseFromVectorFlow(imDep,vecX,vecY);
 
 	// Calcul de l'image d'erreur entre l'image courante et l'image compensée
-	MotionTools::errorImage( /* À compléter */ );
+	MotionTools::errorImage(imErr,imCurr,imComp);
 
 	// Calcul et affichage de l'Erreur Quadratique Moyenne
-	std::cout << "EQM = " << MotionTools::computeEQM( /* À compléter */ ) << std::endl;
+	std::cout << "EQM = " << MotionTools::computeEQM(imCurr,imComp) << std::endl;
 
 	// Affichage des deux images passées en paramètre
 	/* À compléter */
