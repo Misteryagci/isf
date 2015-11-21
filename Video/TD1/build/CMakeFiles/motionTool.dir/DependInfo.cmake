@@ -4,8 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/kaanyagci/Documents/isf/Video/TD1/main.cpp" "/Users/kaanyagci/Documents/isf/Video/TD1/build/CMakeFiles/motionTool.dir/main.cpp.o"
-  "/Users/kaanyagci/Documents/isf/Video/TD1/videoframes.cpp" "/Users/kaanyagci/Documents/isf/Video/TD1/build/CMakeFiles/motionTool.dir/videoframes.cpp.o"
+  "/Users/kaanyagci/Documents/isf/Video/1/main.cpp" "/Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles/motionTool.dir/main.cpp.o"
+  "/Users/kaanyagci/Documents/isf/Video/1/motiontools.cpp" "/Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles/motionTool.dir/motiontools.cpp.o"
+  "/Users/kaanyagci/Documents/isf/Video/1/videoframes.cpp" "/Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles/motionTool.dir/videoframes.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

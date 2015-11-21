@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.4.0/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kaanyagci/Documents/isf/Video/TD1
+CMAKE_SOURCE_DIR = /Users/kaanyagci/Documents/isf/Video/1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kaanyagci/Documents/isf/Video/TD1/build
+CMAKE_BINARY_DIR = /Users/kaanyagci/Documents/isf/Video/1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kaanyagci/Documents/isf/Video/TD1/build/CMakeFiles /Users/kaanyagci/Documents/isf/Video/TD1/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles /Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kaanyagci/Documents/isf/Video/TD1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kaanyagci/Documents/isf/Video/1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/motionTool.dir/build.make CMakeFiles/motionTool.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+motiontools.o: motiontools.cpp.o
+
+.PHONY : motiontools.o
+
+# target to build an object file
+motiontools.cpp.o:
+	$(MAKE) -f CMakeFiles/motionTool.dir/build.make CMakeFiles/motionTool.dir/motiontools.cpp.o
+.PHONY : motiontools.cpp.o
+
+motiontools.i: motiontools.cpp.i
+
+.PHONY : motiontools.i
+
+# target to preprocess a source file
+motiontools.cpp.i:
+	$(MAKE) -f CMakeFiles/motionTool.dir/build.make CMakeFiles/motionTool.dir/motiontools.cpp.i
+.PHONY : motiontools.cpp.i
+
+motiontools.s: motiontools.cpp.s
+
+.PHONY : motiontools.s
+
+# target to generate assembly for a file
+motiontools.cpp.s:
+	$(MAKE) -f CMakeFiles/motionTool.dir/build.make CMakeFiles/motionTool.dir/motiontools.cpp.s
+.PHONY : motiontools.cpp.s
+
 videoframes.o: videoframes.cpp.o
 
 .PHONY : videoframes.o
@@ -189,6 +216,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... motiontools.o"
+	@echo "... motiontools.i"
+	@echo "... motiontools.s"
 	@echo "... videoframes.o"
 	@echo "... videoframes.i"
 	@echo "... videoframes.s"

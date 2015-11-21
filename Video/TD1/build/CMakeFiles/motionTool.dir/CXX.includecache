@@ -6,29 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/Users/kaanyagci/Documents/isf/Video/TD1/main.cpp
+/Users/kaanyagci/Documents/isf/Video/1/main.cpp
 videoframes.hpp
-/Users/kaanyagci/Documents/isf/Video/TD1/videoframes.hpp
+/Users/kaanyagci/Documents/isf/Video/1/videoframes.hpp
 motiontools.hpp
-/Users/kaanyagci/Documents/isf/Video/TD1/motiontools.hpp
+/Users/kaanyagci/Documents/isf/Video/1/motiontools.hpp
+opencv2/opencv.hpp
+/Users/kaanyagci/Documents/isf/Video/1/opencv2/opencv.hpp
+iostream
+-
 
-/Users/kaanyagci/Documents/isf/Video/TD1/motiontools.hpp
+/Users/kaanyagci/Documents/isf/Video/1/motiontools.cpp
+motiontools.hpp
+/Users/kaanyagci/Documents/isf/Video/1/motiontools.hpp
+
+/Users/kaanyagci/Documents/isf/Video/1/motiontools.hpp
 opencv2/opencv.hpp
 -
 
-/Users/kaanyagci/Documents/isf/Video/TD1/videoframes.cpp
+/Users/kaanyagci/Documents/isf/Video/1/videoframes.cpp
 opencv2/opencv.hpp
-/Users/kaanyagci/Documents/isf/Video/TD1/opencv2/opencv.hpp
+/Users/kaanyagci/Documents/isf/Video/1/opencv2/opencv.hpp
 videoframes.hpp
-/Users/kaanyagci/Documents/isf/Video/TD1/videoframes.hpp
+/Users/kaanyagci/Documents/isf/Video/1/videoframes.hpp
 cstdio
 -
 stdio.h
 -
 vector
 -
+sstream
+-
 
-/Users/kaanyagci/Documents/isf/Video/TD1/videoframes.hpp
+/Users/kaanyagci/Documents/isf/Video/1/videoframes.hpp
 opencv2/opencv.hpp
 -
 
